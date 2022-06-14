@@ -4,14 +4,26 @@ import React, { useState } from "react";
 function ColorForm({ addColor }) {
     let [input, setInput] = useState('')
 
+    const isColor = (strColor) => {
+        var s = new Option().style;
+        s.color = strColor;
+        return s.color == strColor 
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault ()
-        addColor(input)
-        setInput('')
+        if(isColor(input)){
+            addColor(input)
+            setInput('')
+        } else {
+            setInput('')
+        }
+        
     }
     const clear = () => {
         setInput('')
     }
+    
     return(
         <div>
             <form onSubmit={handleSubmit}>
